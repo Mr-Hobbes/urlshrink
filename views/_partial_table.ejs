@@ -1,0 +1,33 @@
+<div class="container">
+   <div class="row justify-content-center">
+      <table class="table table-striped col">
+         <thead>
+            <th>Full URL</th>
+            <th>Short URL</th>
+            <th>Clicks</th>
+            <th class="col-1"><i class="fas fa-trash-alt"></i></th>
+         </thead>
+         <tbody>
+            <% shortUrls.forEach(shortUrl=> { %>
+               <tr>
+                  <td><a href="<%= shortUrl.full %>">
+                        <%= shortUrl.full %>
+                     </a></td>
+                  <td><a href="/<%= shortUrl.short %>">
+                        <%= shortUrl.short %>
+                     </a></td>
+                  <td>
+                     <%= shortUrl.clicks %>
+                  </td>
+                  <td class="bg-danger col-1">
+                     <a class="text-white" href="/<%= shortUrl.short %>/delete">
+                        <i class="fas fa-trash-alt"></i>
+                     </a>
+                  </td>
+               </tr>
+               <% }) %>
+
+         </tbody>
+      </table>
+   </div>
+</div>

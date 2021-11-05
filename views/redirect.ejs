@@ -1,0 +1,28 @@
+<%- include('_partial_header.ejs') %>
+<div  class="container">
+   <h1 class="my-5">Redirecting to <%= fullUrl %> in &nbsp;<span id="sleft"></span>&nbsp;
+         seconds...</h1>
+      <div class="progress my-5">
+         <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10"
+            aria-valuemin="0" aria-valuemax="100" id="loadingprogress"></div>
+      </div>
+   </div>
+   <script type="text/javascript">
+      $(function () {
+         let i = 10;
+         let counter = 2.0;
+         $('#sleft').html(counter.toFixed(1))
+         let intval = 50;
+         let prgress = setInterval(() => {
+            $('#loadingprogress').css("width", i + "%")
+            counter -= intval/1000
+            $('#sleft').html(counter.toFixed(1))
+            i += 100 / intval * 2
+            if(counter <= 0.1) {
+               clearInterval(prgress)
+               window.location = '<%= fullUrl %>'
+            }
+         }, intval);
+      });
+   </script>
+   <%- include('_partial_footer.ejs') %>
