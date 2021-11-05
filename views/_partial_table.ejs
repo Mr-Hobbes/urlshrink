@@ -43,7 +43,7 @@
       }
    })
    $('[id^=clip_').css('cursor', 'pointer').on('click', (click) => {
-      let clipboard = '<%- host %>' + click.currentTarget.id.split('_')[1]
+      let clipboard = 'https://<%- host %>/' + click.currentTarget.id.split('_')[1]
       navigator.clipboard.writeText(clipboard);
       Toast.fire({ icon: 'success', title: 'Copied to clipboard' });
    })
