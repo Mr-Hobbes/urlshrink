@@ -14,8 +14,8 @@
                         <%= shortUrl.full %>
                      </a></td>
                   <td><a href="/<%= shortUrl.short %>">
-                        <%= shortUrl.short %>
-                     </a></td>
+                        <%= shortUrl.short %> </i>
+                     </a><i class="fas fa-paste" id="clip_<%= shortUrl.short %>"></i></td>
                   <td>
                      <%= shortUrl.clicks %>
                   </td>
@@ -26,8 +26,25 @@
                   </td>
                </tr>
                <% }) %>
-
          </tbody>
       </table>
    </div>
 </div>
+<script>
+   const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+         toast.addEventListener('mouseenter', Swal.stopTimer)
+         toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+   })
+   $('[id^=clip_').css('cursor', 'pointer').on('click', (click) => {
+      let clipboard = click.currentTarget.id.split('_')[1]
+      navigator.clipboard.writeText(clipboard);
+      Toast.fire({ icon: 'success', title: 'Copied to clipboard' });
+   })
+</script>

@@ -11,6 +11,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.set('view engine', 'ejs')
 app.set('trust proxy', true)
 app.use(express.urlencoded({extended: false}))
+app.use('/sweetalert2', express.static(__dirname + '/node_modules/sweetalert2/dist/'))
 
 app.get('/', async (req,res) => {
    const shortUrls = await ShortUrl.find()
