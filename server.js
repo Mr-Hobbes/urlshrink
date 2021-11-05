@@ -15,8 +15,7 @@ app.use('/sweetalert2', express.static(__dirname + '/node_modules/sweetalert2/di
 
 app.get('/', async (req,res) => {
    const shortUrls = await ShortUrl.find()
-   var host = req.get('host');
-   res.render('index', {shortUrls: shortUrls, host: host})
+   res.render('index', {shortUrls: shortUrls})
 })
 
 app.get('/myurls', async (req,res) => {
