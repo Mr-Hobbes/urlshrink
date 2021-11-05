@@ -20,7 +20,8 @@ app.get('/', async (req,res) => {
 
 app.get('/myurls', async (req,res) => {
    const shortUrls = await ShortUrl.find(({ ip: req.ip }))
-   res.render('myurls', {shortUrls: shortUrls})
+   var host = req.get('host');
+   res.render('myurls', {shortUrls: shortUrls, host: host})
 })
 
 app.post('/shortUrls', async (req,res) => {
